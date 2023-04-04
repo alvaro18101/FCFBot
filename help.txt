@@ -1,0 +1,7 @@
+Los comandos para usar el bot son:
+/start: Inicia el bot
+/help Brinda el listado de comandos
+/freeroom: Muestra todos los salones libres
+/freeroom [piso]: Muestra los salones libres en el piso especificado
+/isfreeroom [aula]: Indica si el aula está libre o no
+/consult [aula]: Brinda todos los detalles de un aula

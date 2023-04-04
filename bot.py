@@ -18,7 +18,17 @@ bot = telebot.TeleBot(token)
 # Comando /start
 @bot.message_handler(commands=['start'])
 def cmd_start(message):
-    bot.reply_to(message, 'Bienvenido estudiante de la FCF')
+    text = ''
+    with open('welcome.txt', 'r', encoding='utf8') as file:
+        text = file.read()
+    bot.reply_to(message, text)
+
+@bot.message_handler(commands=['help'])
+def cmd_help(message):
+    text = ''
+    with open('help.txt', 'r', encoding='utf8') as file:
+        text = file.read()
+    bot.reply_to(message, text)
 
 @bot.message_handler(content_types=['text', 'sticker'])
 def bot_text_message(message):
