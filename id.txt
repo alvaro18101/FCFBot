@@ -1,0 +1,2 @@
+{"ok":true,"result":[{"update_id":737380657,
+"message":{"message_id":3,"from":{"id":1395536533,"is_bot":false,"first_name":"Alvaro","last_name":"Siesquen","username":"alvaro18101","language_code":"en"},"chat":{"id":1395536533,"first_name":"Alvaro","last_name":"Siesquen","username":"alvaro18101","type":"private"},"date":1680581548,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}]}
