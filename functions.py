@@ -10,12 +10,8 @@ with open('files/help.txt', 'r', encoding='utf8') as file:
 
 import numpy as np
 import pandas as pd
-# import schedule
+from datetime import datetime
 
-# ------------------------------------------------
-# /freeroom: Muestra las aulas desocupadas
-# ------------------------------------------------
-# Código para ordenar la data y obtener las aulas con sus horarios (días y horas) ocupados
 path = './files/Bot Telegram - Database General.csv'
 df = pd.read_csv(path, header=None)
 df_modified = df
@@ -25,24 +21,40 @@ df_modified.columns = header
 df_modified = df_modified.drop([''], axis=1)
 df_modified = df_modified.drop([0,1], axis=0)
 df_modified.index = range(len(df_modified))
-# df_string = str(df_modified.iloc[:,[1,4,]])
+
+# ------------------------------------------------
+# /freeroom: Muestra las aulas desocupadas
+# ------------------------------------------------
+# Código para ordenar la data y obtener las aulas con sus horarios (días y horas) ocupados
+df_modified = df_modified.iloc[:,[7, 10, 11, 12, 13, 14, 15]]
+df_modified = df_modified.replace('?', np.NaN)
+aulas_totales = len(df_modified)
+df_modified = df_modified.dropna(subset=['Aula'], axis=0)
+aulas_definidas = len(df_modified)
+
+# a = [1,2,3,2]
+# a.remove(2)
+# a.remove(2)
+# print(a)
 
 
 # Código para determinar las horas libres de cada aula
-
+# for i in df_modified.columns:
+#     print(i)
 
 # Código para obtener la fecha y hora del momento en que se ingresa el comando
+days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
+today = days[datetime.today().weekday()]
 
 
-# Código para seleccionar las aulas que están libres ese día --> devuelve una lista
 
 # Código para armar la respuesta del bot
+freeroom_text = ''
 freerooms = [113, 153, 214] #Lista que tendrá todas las aulas libres por lo menos 1 hora
-rspta1 = ''
+freeroom_aulas = ''
 for i in freerooms:
-    rspta1 += 'Aula ' + str(i) + ', piso ' + str(i)[0] + '\n'
-rspta1 = 'Aulas libres ahora:\n' + rspta1
-
-
-
-
+    freeroom_aulas += 'Aula ' + str(i) + ', piso ' + str(i)[0] + '\n'
+freeroom_aulas = 'Aulas libres ahora:\n' + freeroom_aulas
+freeroom_text = freeroom_text + freeroom_aulas + 'Recuerda que un aula se considera disponible si cuenta con al menos una hora de tiempo libre.\n'
+freeroom_obs = 'ADVERTENCIA: Cursos sin aula definida: {}' .format(aulas_totales - aulas_definidas)
+freeroom_text += freeroom_obs
