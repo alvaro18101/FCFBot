@@ -1,4 +1,6 @@
-Bienvenido estudiante de la FCF
+Bienvenido estudiante de la FCF:
+Mi función es ayudarte a encontrar aulas vacías en la facultad de ciencias físicas para que puedas estudiar tranquilamente.
+
 Los comandos para usar el bot son:
 /start: Inicia el bot
 /help Brinda el listado de comandos

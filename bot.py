@@ -1,4 +1,5 @@
 import requests
+import schedule
 
 def bot_send_text(bot_message):
     bot_token = '6031954984:AAG46zwweNnSGryV57ZeMlzlgDg_z4Gbbj8'
@@ -13,29 +14,36 @@ def bot_send_text(bot_message):
 
 import telebot
 from config import *
+from functions import *
 bot = telebot.TeleBot(token)
 
 # Comando /start
 @bot.message_handler(commands=['start'])
 def cmd_start(message):
-    text = ''
-    with open('welcome.txt', 'r', encoding='utf8') as file:
-        text = file.read()
-    bot.reply_to(message, text)
+    bot.reply_to(message, welcome)
 
 @bot.message_handler(commands=['help'])
 def cmd_help(message):
-    text = ''
-    with open('help.txt', 'r', encoding='utf8') as file:
-        text = file.read()
-    bot.reply_to(message, text)
+    bot.reply_to(message, help)
+
+# Los demás comandos deben ir aquí
+# @bot.message_handler(commands=['freeroom'])
+# def cmd_freeroom(messsage):
+#     bot.reply_to(messsage,df_string)
+
+
+# ----------------------------------------------------------
 
 @bot.message_handler(content_types=['text', 'sticker'])
 def bot_text_message(message):
     bot.send_message(message.chat.id, 'Inicia el bot con el comando /start y si quieres ayuda usa el comando /help')
 
-
+def cmd_freeroom():
+    bot_send_text(rspta1)
 if __name__ == '__main__':
-    print('Iniciando el bot')
-    bot.infinity_polling()
-    print('Finalizado')
+    # print('Iniciando el bot')
+    schedule.every().day.at("02:52").do(cmd_freeroom)
+    # bot.infinity_polling()
+    while True:
+        schedule.run_pending()
+    # print('Finalizado')
