@@ -4,6 +4,7 @@ Mi función es ayudarte a encontrar aulas vacías en la facultad de ciencias fí
 Los comandos para usar el bot son:
 /start: Inicia el bot
 /help Brinda el listado de comandos
+/list: Muestra una lista con los números de las aulas en la facultad
 /freeroom: Muestra todos los salones libres
 /freeroom [piso]: Muestra los salones libres en el piso especificado
 /isfreeroom [aula]: Indica si el aula está libre o no

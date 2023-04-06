@@ -20,17 +20,30 @@ header = ['','Plan', 'Semestre', 'Tipo', 'Código', 'Asignatura', 'Sección', 'T
 df_modified.columns = header
 df_modified = df_modified.drop([''], axis=1)
 df_modified = df_modified.drop([0,1], axis=0)
-df_modified.index = range(len(df_modified))
+
+df_modified = df_modified.replace('?', np.NaN)
+aulas_totales = len(df_modified)
+df_modified = df_modified.dropna(subset=['Aula'], axis=0)
+aulas_definidas = len(df_modified)
+
+# ------------------------------------------------
+# /list: Muestra las aulas
+# ------------------------------------------------
+aulas_fcf = df_modified['Aula']
+aulas_fcf = list(aulas_fcf)
+aulas_fcf.sort()
+aulas_fcf.remove('virtual')
+lista_aulas = []
+for i in aulas_fcf:
+    if not(i in lista_aulas):
+        lista_aulas.append(i)
 
 # ------------------------------------------------
 # /freeroom: Muestra las aulas desocupadas
 # ------------------------------------------------
 # Código para ordenar la data y obtener las aulas con sus horarios (días y horas) ocupados
 df_modified = df_modified.iloc[:,[7, 10, 11, 12, 13, 14, 15]]
-df_modified = df_modified.replace('?', np.NaN)
-aulas_totales = len(df_modified)
-df_modified = df_modified.dropna(subset=['Aula'], axis=0)
-aulas_definidas = len(df_modified)
+
 
 # a = [1,2,3,2]
 # a.remove(2)

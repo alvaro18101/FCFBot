@@ -26,7 +26,13 @@ def cmd_start(message):
 def cmd_help(message):
     bot.reply_to(message, help)
 
+
 # Los demás comandos deben ir aquí
+@bot.message_handler(commands=['list'])
+def cmd_help(message):
+    bot.reply_to(message, str(lista_aulas))
+
+
 @bot.message_handler(commands=['freeroom'])
 def cmd_freeroom(messsage):
     # Código para obtener la fecha y hora del momento en que se ingresa el comando
@@ -34,7 +40,6 @@ def cmd_freeroom(messsage):
     hour = datetime.today().hour
     minutes = datetime.today().minute
     # Código para seleccionar las aulas que están libres ese día --> devuelve una lista
-
     
     bot.reply_to(messsage,'Consulta realizada el {} a las {}:{}\n' .format(today,hour,minutes) + freeroom_text)
 
